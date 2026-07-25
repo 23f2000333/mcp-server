@@ -1,13 +1,10 @@
-import inspect
 from fastapi import FastAPI
-from mcp.server.fastmcp import FastMCP
+import mcp.server.fastmcp as fm
 
 app = FastAPI()
 
 @app.get("/")
 def info():
     return {
-        "FastMCP_methods": sorted(
-            x for x in dir(FastMCP) if not x.startswith("_")
-        )
+        "module": sorted(x for x in dir(fm) if not x.startswith("_"))
     }
